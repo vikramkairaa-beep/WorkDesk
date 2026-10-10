@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1224">
+  <title>Nova WorkDesk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">N</div><div><strong>Nova</strong><span>WorkDesk</span></div></div>
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> Dashboard</button>
+      <button class="nav-item" data-view="tasks"><span>✓</span> Office Tasks</button>
+      <button class="nav-item" data-view="report"><span>▤</span> EOD Report</button>
+      <div class="sidebar-note"><span class="status-dot"></span> Local workspace</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">WORKSPACE / DAILY OPERATIONS</p><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="today-pill" id="todayPill"></span><div class="avatar">V</div></div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="welcome-card">
+          <div><p class="eyebrow light">YOUR DAILY CONTROL CENTER</p><h2>Good work starts with<br><span>clear tracking.</span></h2><p class="welcome-copy">Manage office tasks and prepare your end-of-day report in one place.</p><button class="primary-btn" id="goTasks">＋ Add office task</button></div>
+          <div class="orb" aria-hidden="true"><div class="orb-core">NW</div></div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-label">Total tasks</span><strong id="totalCount">0</strong><span class="stat-foot">In today's workspace</span></article>
+          <article class="stat-card"><span class="stat-label">Completed</span><strong id="doneCount">0</strong><span class="stat-foot positive">Tasks marked complete</span></article>
+          <article class="stat-card"><span class="stat-label">In progress</span><strong id="progressCount">0</strong><span class="stat-foot">Still being worked on</span></article>
+          <article class="stat-card"><span class="stat-label">Completion</span><strong id="completionRate">0%</strong><div class="progress-track"><div id="completionBar"></div></div></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">TODAY'S OVERVIEW</p><h2>Recent office tasks</h2></div><button class="text-btn" id="viewAllTasks">View all →</button></div>
+        <div id="dashboardTasks" class="task-list"></div>
+      </section>
+
+      <section class="view" id="tasksView">
+        <div class="section-heading"><div><p class="eyebrow">DAILY OPERATIONS</p><h2>Office task tracker</h2><p class="muted">Add tasks, update status, and keep your daily work organized.</p></div></div>
+        <form class="task-form" id="taskForm">
+          <label>Task name<input id="taskName" required maxlength="100" placeholder="e.g. KAIT – KYC Report"></label>
+          <label>Category<select id="taskCategory"><option>KAIT – KYC Report</option><option>Upline Mail ID Verification</option><option>Staking Report</option><option>Wallet Daily Monitoring</option><option>Transaction Verification</option><option>ROS Usage / Earnings</option><option>Other</option></select></label>
+          <label>Status<select id="taskStatus"><option>In Progress</option><option>Completed</option><option>Pending</option></select></label>
+          <label>Task from date<input id="taskDateFrom" type="date" required></label>
+          <label>Task to date<input id="taskDateTo" type="date" required></label>
+          <label class="wide-field">Work notes<input id="taskNotes" maxlength="220" placeholder="e.g. Verified 284 IDs"></label>
+          <button class="primary-btn form-submit" type="submit">＋ Add task</button>
+        </form>
+        <div class="filter-row"><input id="taskSearch" class="search-input" placeholder="Search tasks…"><select id="statusFilter" aria-label="Filter by status"><option value="All">All statuses</option><option>In Progress</option><option>Completed</option><option>Pending</option></select></div>
+        <div id="allTasks" class="task-list"></div>
+      </section>
+
+      <section class="view" id="reportView">
+        <div class="section-heading"><div><p class="eyebrow">END OF DAY</p><h2>Report builder</h2><p class="muted">Generate a plain-text report from your task list.</p></div></div>
+        <div class="report-layout">
+          <div class="report-settings">
+            <label>From date<input type="date" id="reportFrom"></label>
+            <label>To date<input type="date" id="reportTo"></label>
+            <p class="date-help">Choose a date range to include all tasks between those dates.</p>
+            <label>Project name<input id="projectName" value="KAIT"></label>
+            <label>Prepared by<input id="preparedBy" value="Vikram"></label>
+            <label>Additional notes<textarea id="extraNotes" rows="4" placeholder="Add any extra updates for today…"></textarea></label>
+            <button class="primary-btn" id="generateReport">↻ Generate report</button>
+          </div>
+          <div class="report-preview"><div class="preview-head"><div><span class="preview-dot"></span> REPORT PREVIEW</div><button class="secondary-btn" id="copyReport">Copy report</button></div><pre id="reportOutput">Your report will appear here.</pre><p id="copyFeedback" class="feedback" aria-live="polite"></p></div>
+        </div>
+      </section>
+      <footer>Nova WorkDesk <span>•</span> Your tasks are saved in this browser on this device.</footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
